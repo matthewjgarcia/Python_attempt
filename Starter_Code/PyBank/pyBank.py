@@ -1,6 +1,7 @@
 import os
 import csv
 file = "/Users/mattgarcia/Desktop/python_homework/Python_attempt/Starter_Code/PyBank/Resources/budget_data.csv"
+output_file = "pyBank_Analysis.txt"
 total_months = 0
 net_total = 0
 total_change = 0
@@ -39,10 +40,23 @@ with open(file) as bank_file:
             prev_profit_loss = profit_loss
     
     average_change = total_change / change_count
+
+    #Time to display the information
+
     print(f"Total Months: {total_months}")
     print(f"Total: ${net_total}")
     print(f"Average Change: {average_change}")
     print(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amt})")
     print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amt})")
 
-    #Trying to get the greatest increase working, stuck on lines 32 ish
+    #Time to write to the output file
+
+
+    with open(output_file, 'w') as out:
+        out.write("Financial Analysis\n")
+        out.write("----------------------\n")
+        out.write(f"Total Months: {total_months}\n")
+        out.write(f"Total: {net_total}\n")
+        out.write(f"Average Change: {average_change}\n")
+        out.write(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amt})\n")
+        out.write(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amt})\n")
