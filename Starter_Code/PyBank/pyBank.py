@@ -14,7 +14,6 @@ prev_profit_loss = None
 with open(file) as bank_file:
     csvReader = csv.reader(bank_file)
     bank_file_header = next(csvReader)
-
     for row in csvReader:
         date = row[0]
         profit_loss = int(row[1])
@@ -23,19 +22,17 @@ with open(file) as bank_file:
             total_months += 1
         if row and row[1]:
             net_total += profit_loss
-        if row:
-            profit_loss = int(row[1])
-            if prev_profit_loss is not None:
-                change = profit_loss - prev_profit_loss
-                total_change += change
-                change_count += 1
-                if change > greatest_increase_amt:
-                    greatest_increase_date = date
-                    greatest_increase_amt = change
-                if change < greatest_decrease_amt:
-                    greatest_decrease_date = date
-                    greatest_decrease_amt = change
-            prev_profit_loss = profit_loss
+        if prev_profit_loss is not None:
+            change = profit_loss - prev_profit_loss
+            total_change += change
+            change_count += 1
+            if change > greatest_increase_amt:
+                greatest_increase_date = date
+                greatest_increase_amt = change
+            if change < greatest_decrease_amt:
+                greatest_decrease_date = date
+                greatest_decrease_amt = change
+        prev_profit_loss = profit_loss
     
     average_change = total_change / change_count
 
