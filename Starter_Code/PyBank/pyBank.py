@@ -12,11 +12,9 @@ greatest_decrease_date = None
 greatest_decrease_amt = 0
 prev_profit_loss = None
 with open(file) as bank_file:
-    #print("Opened the file")
     csvReader = csv.reader(bank_file)
-   #print(csvReader)
     bank_file_header = next(csvReader)
-    #print(bank_file_header)
+
     for row in csvReader:
         date = row[0]
         profit_loss = int(row[1])
